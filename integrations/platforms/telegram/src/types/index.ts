@@ -17,3 +17,9 @@ export type Context = TelegrafContext & {
 };
 
 export type CommandFn = (ctx: Context) => void;
+
+export type Env = {
+  BOT_TOKEN: string;
+  USER_ID: number;
+  WEBHOOK_URL: string;
+}
