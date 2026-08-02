@@ -16,10 +16,14 @@ export type Context = TelegrafContext & {
   session: Session;
 };
 
-export type CommandFn = (ctx: Context) => void;
-
 export type Env = {
   BOT_TOKEN: string;
   USER_ID: number;
   WEBHOOK_URL: string;
 }
+
+export type Command<T = void> = {
+  name: string;
+  description: string;
+  fn: (ctx: Context) => Promise<T>;
+};
