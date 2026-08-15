@@ -1,8 +1,9 @@
 import amqp, { type Channel, type Connection } from "amqplib";
+import { env } from "../config/env";
 
 export async function connectRabbitMQ() {
   try {
-    const connection = await amqp.connect("amqp://myuser:mypassword@localhost:8090");
+    const connection = await amqp.connect(`amqp://${env.RABBITMQ_USER}:${env.RABBITMQ_PASS}@${env.RABBITMQ_HOST}:${env.RABBITMQ_PORT}`);
     const channel = await connection.createChannel();
 
     return {

@@ -15,7 +15,8 @@
     "start": "bun ./dist/src/index.js"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/node": "^26.2.0"
   },
   "peerDependencies": {
     "typescript": "^5"
