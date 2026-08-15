@@ -1,16 +1,30 @@
+version: '3.8'
+
 services:
   rabbitmq:
     image: rabbitmq:4-management
-    container_name: my-rmq-container
+    container_name: gluco_rabbitmq
     ports:
       - "8081:15672"
-      - "8090:5672"
+      - "${RABBITMQ_PORT}:5672"
+
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
+      
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+
     restart: unless-stopped
+
+    networks:
+      - gluco-network
 
 volumes:
   rabbitmq_data:
+    driver: local
+
+networks:
+  gluco-network:
+    driver: bridge
+  
