@@ -24,8 +24,11 @@ public class GlucoseService {
         return convertToDto(entity);
     }
 
-    public List<GlucoseEntity> getAll() {
-        return repository.findAll();
+    public List<GlucoseDTO> getAll() {
+        return repository.findAll()
+                .stream()
+                .map(this::convertToDto)
+                .toList();
     }
 
     public GlucoseDTO create(GlucoseDTO dto) throws Exception {
@@ -39,10 +42,8 @@ public class GlucoseService {
                 endOfDay
         );
 
-        if (alredyExists) {
-            System.out.println("Já cadastrado nesse periodo");
-            throw new Exception("Já cadastrado para essa refeição");
-        }
+        if (alredyExists) throw new Exception("Já cadastrado para essa refeição");
+
 
         GlucoseEntity entity = new GlucoseEntity();
         entity.setValue(dto.getValue());

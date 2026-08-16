@@ -18,19 +18,13 @@ public class GlucoseDTO {
     @Max(value = 600, message = "The blood glucose level cannot exceed 600; if it does, go to the hospital immediately")
     @NotNull(message = "The glycemic value is mandatory.")
     private Integer value;
-
     @NotNull(message = "Please fill source name field")
     private Source source;
-
-    @NotNull(message = "Message value is mandatory.")
     private String message;
-
     private String note;
     private String recommendation;
-
     @NotNull(message = "The meal period is mandatory.")
     private MealPeriod mealPeriod;
-
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
