@@ -7,5 +7,5 @@ export const webhookRoutes = async (fastify: FastifyInstance) => {
   const service = new WebHookService(channel);
   const controller = new WebhookController(service);
 
-  fastify.post("/gluco", controller.registerGluco);
+  fastify.post("/v1/webhook/gluco", controller.registerGluco);
 };
