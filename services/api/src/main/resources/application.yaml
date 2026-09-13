@@ -22,3 +22,6 @@ spring:
 
     hibernate:
       ddl-auto: update
+jwt:
+  expiration: ${JWT_EXPIRATION:900000}
+  key: ${JWT_KEY}
