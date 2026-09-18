@@ -2,7 +2,7 @@ package dev.rodrigojse.api.service;
 
 import dev.rodrigojse.api.database.model.GlucoseEntity;
 import dev.rodrigojse.api.database.repository.GlucoseRepository;
-import dev.rodrigojse.api.dto.GlucoseDTO;
+import dev.rodrigojse.api.dto.glucose.GlucoseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -43,7 +42,6 @@ public class GlucoseService {
         );
 
         if (alredyExists) throw new Exception("Já cadastrado para essa refeição");
-
 
         GlucoseEntity entity = new GlucoseEntity();
         entity.setValue(dto.getValue());

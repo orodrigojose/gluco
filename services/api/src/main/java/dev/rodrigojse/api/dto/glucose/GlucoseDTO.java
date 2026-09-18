@@ -1,4 +1,4 @@
-package dev.rodrigojse.api.dto;
+package dev.rodrigojse.api.dto.glucose;
 
 import dev.rodrigojse.api.database.enums.MealPeriod;
 import dev.rodrigojse.api.database.enums.Source;

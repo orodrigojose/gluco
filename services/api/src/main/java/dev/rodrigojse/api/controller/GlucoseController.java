@@ -3,7 +3,7 @@ package dev.rodrigojse.api.controller;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.rodrigojse.api.dto.GlucoseDTO;
+import dev.rodrigojse.api.dto.glucose.GlucoseDTO;
 import dev.rodrigojse.api.response.ApiResponse;
 import dev.rodrigojse.api.service.GlucoseService;
 import jakarta.validation.Valid;
@@ -25,9 +25,9 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/v1/glico/")
 @Validated
+@RequiredArgsConstructor
 public class GlucoseController {
-    @Autowired
-    private GlucoseService glucoseService;
+    private final GlucoseService glucoseService;
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<GlucoseDTO>> get(@PathVariable UUID id) throws Exception {

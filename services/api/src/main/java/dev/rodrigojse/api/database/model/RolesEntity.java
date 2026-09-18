@@ -1,11 +1,11 @@
 package dev.rodrigojse.api.database.model;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "roles")
@@ -16,7 +16,10 @@ import org.springframework.security.core.GrantedAuthority;
 @Builder
 public class RolesEntity implements GrantedAuthority {
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name ="name")
     private String name;
 
     @Override
