@@ -52,7 +52,6 @@ public class AuthenticationService {
                             .build())
                         );
 
-        System.out.println(role.toString());
         return userRepository.save(UserEntity.builder()
                 .username(dto.getUsername())
                 .email(dto.getEmail())
