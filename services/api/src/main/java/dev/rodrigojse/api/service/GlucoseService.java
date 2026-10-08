@@ -3,7 +3,7 @@ package dev.rodrigojse.api.service;
 import dev.rodrigojse.api.database.model.GlucoseEntity;
 import dev.rodrigojse.api.database.repository.GlucoseRepository;
 import dev.rodrigojse.api.dto.glucose.GlucoseDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class GlucoseService {
-    @Autowired
-    private GlucoseRepository repository;
+    private final GlucoseRepository repository;
 
     public GlucoseDTO getById(UUID id) throws Exception {
-        GlucoseEntity entity = repository.findById(id).orElseThrow(() -> new Exception("Não encontrada"));
+        GlucoseEntity entity = repository.findById(id).orElseThrow(() -> new Exception("Glucose not found!"));
 
         return convertToDto(entity);
     }
@@ -35,28 +35,34 @@ public class GlucoseService {
         LocalDateTime startOfDay = today.atStartOfDay();
         LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
 
-        boolean alredyExists = repository.existsByMealPeriodAndCreatedAtBetween(
+        boolean alreadyExists = repository.existsByMealPeriodAndCreatedAtBetween(
                 dto.getMealPeriod(),
                 startOfDay,
                 endOfDay
         );
 
-        if (alredyExists) throw new Exception("Já cadastrado para essa refeição");
+        if (alreadyExists) throw new Exception("Glycemic data already exists for today");
 
         GlucoseEntity entity = new GlucoseEntity();
-        entity.setValue(dto.getValue());
-        entity.setMealPeriod(dto.getMealPeriod());
-        GlucoseEntity glucose = repository.save(entity);
 
+        entity.setMessage(dto.getMessage());
+        entity.setValue(dto.getValue());
+        entity.setRecommendation(dto.getRecommendation());
+        entity.setNote(dto.getNote());
+        entity.setSource(dto.getSource());
+        entity.setMealPeriod(dto.getMealPeriod());
+
+        GlucoseEntity glucose = repository.save(entity);
         return convertToDto(glucose);
     }
 
     public GlucoseDTO update(UUID id, GlucoseDTO dto) throws Exception {
-        GlucoseEntity entity = repository.findById(id).orElseThrow(() -> new Exception("Probrema"));
+        GlucoseEntity entity = repository.findById(id).orElseThrow(() -> new Exception("Glucose not found!"));
+
         entity.setValue(dto.getValue());
         entity.setMealPeriod(dto.getMealPeriod());
-        GlucoseEntity updatedEntity = repository.save(entity);
 
+        GlucoseEntity updatedEntity = repository.save(entity);
         return convertToDto(updatedEntity);
     }
 

@@ -36,10 +36,6 @@ public class GlucoseController {
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<GlucoseDTO>>> getAll() throws Exception {
-        if (true) {
-            throw new Exception("Teste");
-        }
-
         return ResponseEntity.ok(ApiResponse.success(glucoseService.getAll(), "Glucose record retrieved successfully"));
     }
 

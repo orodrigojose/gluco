@@ -38,7 +38,6 @@ public class AuthenticationService {
     private long expirationTime;
 
     public UserEntity register(RegisterRequestDTO dto) throws BadRequestException {
-        System.out.println(dto.toString());
         UserEntity user  = userRepository.findByEmail(dto.getEmail()).orElse(null);
 
         if (user != null ) throw new BadRequestException("User exists");

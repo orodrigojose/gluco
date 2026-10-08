@@ -32,7 +32,7 @@ public class UserService {
             return user;
         }
 
-        throw new UserNotFoundException("Falha ao deletar usuário");
+        throw new UserNotFoundException("User not found");
     }
 
     private UserDTO convertToDTO(UserEntity entity) {

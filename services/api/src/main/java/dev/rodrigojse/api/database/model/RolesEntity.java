@@ -24,7 +24,10 @@ public class RolesEntity implements GrantedAuthority {
 
     @Override
     public @Nullable String getAuthority() {
-        return name;
+        if (name == null) {
+            return null;
+        }
+        return name.startsWith("ROLE_") ? name : "ROLE_" + name;
     }
 
 }

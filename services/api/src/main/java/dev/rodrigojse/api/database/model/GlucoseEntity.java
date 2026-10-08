@@ -36,7 +36,6 @@ public class GlucoseEntity {
     @Column(name = "meal_period", nullable = false)
     private MealPeriod mealPeriod;
 
-
     @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;
