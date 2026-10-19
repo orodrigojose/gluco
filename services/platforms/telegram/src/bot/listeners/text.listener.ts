@@ -1,5 +1,6 @@
 import type { Telegraf } from "telegraf";
 import webhookService from "../../services/webhook/webhook.service";
+import type { WebHookData } from "../../services/webhook/type";
 
 function validateMessage(text: string) {
   const normalized = text.toLowerCase();
@@ -26,12 +27,22 @@ export function registerTextListener(bot: Telegraf) {
 
       if (!validation.validated) return next();
 
-      const data = await webhookService.send({
+      const data: WebHookData = {
         source: "telegram",
         message: text,
-      });
+        replyContext: {
+          chatId: ctx.chat.id,
+          messageId: ctx.message.message_id,
+        },
+      };
 
-      ctx.reply(data.message);
+      const response = await webhookService.send(data);
+
+      await ctx.reply(response.message, {
+        reply_parameters: {
+          message_id: ctx.message.message_id,
+        },
+      });
     } catch (err) {
       console.error(err);
       ctx.reply("An trouble occurred while recording blood glucose... 😭");

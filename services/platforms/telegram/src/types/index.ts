@@ -20,6 +20,10 @@ export type Env = {
   BOT_TOKEN: string;
   USER_ID: number;
   WEBHOOK_URL: string;
+  RABBITMQ_HOST: string;
+  RABBITMQ_USER: string;
+  RABBITMQ_PASS: string;
+  RABBITMQ_PORT: number;
 }
 
 export type Command<T = void> = {
