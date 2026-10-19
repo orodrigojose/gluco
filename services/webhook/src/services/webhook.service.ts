@@ -6,7 +6,7 @@ export default class WebHookService {
   constructor (private channel: Channel) {}
 
   sendGlucoToQueue = async (gluco: GlucoIntegration) => { 
-    const queue = "gluco";
+    const queue = "analysis.requested";
     const response = await sendMessage(
       queue,
       JSON.stringify(gluco),

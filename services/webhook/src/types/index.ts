@@ -6,6 +6,7 @@ export enum Source {
 
 export type GlucoIntegration = {
   source: Source,
+  messageId: number,
   message: string
 }
 
