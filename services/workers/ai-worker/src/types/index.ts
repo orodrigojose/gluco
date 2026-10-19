@@ -13,16 +13,16 @@ export type Env = {
 };
 
 export enum Source {
-  TELEGRAM,
-  WHATSAPP,
-  DISCORD,
+  TELEGRAM = "TELEGRAM",
+  WHATSAPP = "WHATSAPP",
+  DISCORD = "DISCORD",
 }
 
 export enum MealPeriod {
-  BREAKFAST,
-  LUNCH,
-  SNACK,
-  DINNER,
+  BREAKFAST = "BREAKFAST",
+  LUNCH = "LUNCH",
+  SNACK = "SNACK",
+  DINNER = "DINNER",
 }
 
 export type Glico = {
@@ -36,7 +36,9 @@ export type Glico = {
 
 export type QueueBody = {
   source: Source,
+  value: number | null,
   message: string,
+  mealPeriod: MealPeriod | null,
 
   analysis: {
     recommendation: string,

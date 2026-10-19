@@ -22,7 +22,6 @@ export const consumeMessages = async (
 
     try {
       const content = message.content.toString();
-      console.log(`Received: ${content}`);
       await fn(content, channel);
       channel.ack(message);
     } catch (error) {
