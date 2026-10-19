@@ -1,0 +1,24 @@
+{
+  "name": "register-worker",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "build": "bun build src/index.ts --outdir ./dist --target bun",
+    "start": "bun ./dist/src/index.js"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.8",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "amqplib": "^2.2.0",
+    "axios": "^1.20.0",
+    "dotenv": "^18.0.7",
+    "zod": "^4.6.6"
+  }
+}
